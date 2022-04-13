@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Consultations;
+use App\Models\Consultation;
 use Illuminate\Http\Request;
 
 class ConsultationController extends Controller
@@ -45,7 +45,7 @@ class ConsultationController extends Controller
      * @param  \App\Models\Consultations  $consultations
      * @return \Illuminate\Http\Response
      */
-    public function show(Consultations $consultations)
+    public function show(Consultation $consultations)
     {
         //
     }
@@ -53,10 +53,10 @@ class ConsultationController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Consultations  $consultations
+     * @param  \App\Models\Consultation  $consultations
      * @return \Illuminate\Http\Response
      */
-    public function edit(Consultations $consultations)
+    public function edit(Consultation $consultations)
     {
         //
     }
@@ -65,10 +65,10 @@ class ConsultationController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Consultations  $consultations
+     * @param  \App\Models\Consultation  $consultations
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Consultations $consultations)
+    public function update(Request $request, Consultation $consultations)
     {
         //
     }
@@ -76,10 +76,10 @@ class ConsultationController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Consultations  $consultations
+     * @param  \App\Models\Consultation  $consultations
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Consultations $consultations)
+    public function destroy(Consultation $consultations)
     {
         //
     }

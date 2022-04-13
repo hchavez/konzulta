@@ -7,7 +7,7 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-12">
-          <div class="card-header">{{ __('Consulations') }}</div>
+          <div class="card-header">{{ __('Consultations') }}</div>
       </div><!-- /.col -->
     </div><!-- /.row -->
   </div><!-- /.container-fluid -->

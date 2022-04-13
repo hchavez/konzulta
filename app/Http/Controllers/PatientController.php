@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Patients;
 use Illuminate\Http\Request;
 use DataTables;
 use Carbon\Carbon;
+use App\Models\Patient;
+use App\Models\Consultation;
+use App\Models\Medication;
+use App\Models\Billing;
 
 class PatientController extends Controller
 {
@@ -16,10 +19,10 @@ class PatientController extends Controller
      */
     public function index(Request $request)
     {
-        $patient = Patients::latest()->get();
+        $patient = Patient::latest()->get();
 
         if ($request->ajax()) {
-            $data = Patients::latest()->get();
+            $data = Patient::latest()->get();
            
             return Datatables::of($data)
                     ->addIndexColumn()
@@ -54,7 +57,7 @@ class PatientController extends Controller
      */
     public function store(Request $request)
     {
-        Patients::updateOrCreate(['id' => $request->id],
+        Patient::updateOrCreate(['id' => $request->id],
                 ['physician_id' => $request->get('physician_id'), 
                 'lastname' => $request->lastname, 
                 'firstname' => $request->firstname,
@@ -77,7 +80,7 @@ class PatientController extends Controller
      * @param  \App\Models\Patients  $patients
      * @return \Illuminate\Http\Response
      */
-    public function show(Patients $patients)
+    public function show(Patient $patients)
     {
         var_dump($patients);
     }
@@ -88,9 +91,15 @@ class PatientController extends Controller
      * @param  \App\Models\Patients  $patients
      * @return \Illuminate\Http\Response
      */
-    public function edit(Patients $patient)
+    public function edit(Patient $patient)
     {
-        return view('patients.edit',compact('patient'));
+        $patient = Patient::find($patient->id);
+
+        $consultationslatest = Consultation::where('patient_id',1)->orderBy('created_at','desc')->limit(1)->get();
+        foreach ($consultationslatest  as $medication) {
+            //  echo $medication->temp;
+        }
+        return view('patients.edit',compact('patient','consultationslatest'));
     }
 
     /**
@@ -100,7 +109,7 @@ class PatientController extends Controller
      * @param  \App\Models\Patients  $patients
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Patients $patients)
+    public function update(Request $request, Patient $patients)
     {
         //
     }
@@ -111,9 +120,9 @@ class PatientController extends Controller
      * @param  \App\Models\Patients  $patients
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Patients $patients)
+    public function destroy(Patient $patients)
     {
-        Post::find($id)->delete();
+        Patient::find($id)->delete();
      
         return response()->json(['success'=>'Post deleted successfully.']);
     }
